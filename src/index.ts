@@ -605,6 +605,5 @@ function driveUploadCompleteCallback(err: string, gid: string, url: string, file
       finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> (${fileSizeStr}) <br>Do not Share Direct Link. To Share Use: <br>If it's a File<a href='${indexurl}'>${fileName}</a><br>If it's a Folder <a href='${indexurl}/'>${fileName}</a>`;
     }
     cleanupDownload(gid, finalMessage, url);
+    }
   }
-  }
-}
