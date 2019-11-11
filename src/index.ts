@@ -39,7 +39,7 @@ setEventCallback(eventRegex.commandsRegex.start, eventRegex.commandsRegexNoName.
     msgTools.sendMessage(bot, msg, 'Bot is not usable outside @BhadooCloud group', -1);
   } else {
     msgTools.sendMessage(bot, msg,
-                         'Welcome to @BhadooCloud Group. \n Here you can fetch Torrents and Direct URLs to Shared Google Drive. \n There are several bots embedded in this group and more are coming soon. \n You can enter / mirror to see number of bots and their usernames. \n Each file is deleted after every 10 days. \n Do not share direct Drive Links, instead go to Group Description and Open Index and share those URLs in public. \n Dont add dead torrents and do not spam. \n Support is available at @Bhadoo . \n Visit https://t.me/BhadooCloud/39 for updates in Group.',
+                         'Welcome to @BhadooCloud Group. \n\nHere you can fetch Torrents and Direct URLs to Shared Google Drive. \n\nThere are several bots embedded in this group and more are coming soon. \n\nYou can enter / mirror to see number of bots and their usernames. \n\nEach file is deleted after every 10 days. \n\nDo not share direct Drive Links, instead go to Group Description and Open Index and share those URLs in public. \n\nDont add dead torrents and do not spam. \n\nSupport is available at @Bhadoo . \n\nVisit https://t.me/BhadooCloud/39 for updates in Group.',
                          -1);
   }
 });
@@ -600,9 +600,9 @@ function driveUploadCompleteCallback(err: string, gid: string, url: string, file
       var fileSizeStr = downloadUtils.formatSize(fileSize);
       var rawurl = constants.INDEX_DOMAIN + fileName ;
       var indexurl = encodeURI(rawurl) ;
-      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> (${fileSizeStr}) \n Do not Share Direct Link. To Share Use: \n If it's a File<a href='${indexurl}'>${fileName}</a> \n If it's a Folder <a href='${indexurl}/'>${fileName}</a>`;
+      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> (${fileSizeStr}) \n\nDo not Share Direct Link. \n\nTo Share Use: \n\n<a href='${indexurl}'>${fileName}</a> if it's a File \n\n <a href='${indexurl}/'>${fileName}</a> if it's a Folder`;
     } else {
-      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> \n Do not Share Direct Link. To Share Use: \n If it's a File<a href='${indexurl}'>${fileName}</a> \n If it's a Folder <a href='${indexurl}/'>${fileName}</a>`;
+      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> \n\nDo not Share Direct Link. \n\nTo Share Use: \n\n<a href='${indexurl}'>${fileName}</a> if it's a File \n\n <a href='${indexurl}/'>${fileName}</a> if it's a Folder`;
     }
     cleanupDownload(gid, finalMessage, url);
     }
