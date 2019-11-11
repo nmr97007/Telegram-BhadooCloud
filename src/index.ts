@@ -39,7 +39,7 @@ setEventCallback(eventRegex.commandsRegex.start, eventRegex.commandsRegexNoName.
     msgTools.sendMessage(bot, msg, 'Bot is not usable outside @BhadooCloud group', -1);
   } else {
     msgTools.sendMessage(bot, msg,
-                         'Welcome to @BhadooCloud Group. Here you can fetch Torrents and Direct URLs to Shared Google Drive. There are several bots embedded in this group and more are coming soon. You can enter / mirror to see number of bots and their usernames. Each file is deleted after every 10 days. Do not share direct Drive Links, instead go to Group Description and Open Index and share those URLs in public. Dont add dead torrents and do not spam. Support is available at @Bhadoo . Visit <a href="https://t.me/BhadooCloud/39">This Post</a> for updates in Group.',
+                         'Welcome to @BhadooCloud Group. <br>Here you can fetch Torrents and Direct URLs to Shared Google Drive. <br>There are several bots embedded in this group and more are coming soon. <br>You can enter / mirror to see number of bots and their usernames. <br>Each file is deleted after every 10 days. <br>Do not share direct Drive Links, instead go to Group Description and Open Index and share those URLs in public. <br>Dont add dead torrents and do not spam. <br>Support is available at @Bhadoo . <br>Visit <a href="https://t.me/BhadooCloud/39">This Post</a> for updates in Group.',
                          -1);
   }
 });
@@ -599,9 +599,9 @@ function driveUploadCompleteCallback(err: string, gid: string, url: string, file
     console.log(`${gid}: Uploaded `);
     if (fileSize) {
       var fileSizeStr = downloadUtils.formatSize(fileSize);
-      finalMessage = `<a href='${url}'>${fileName}</a> (${fileSizeStr}) Do not Share Direct Link. Use Index of Bots. Check <a href='https://t.me/BhadooCloud/39'>This Post</a>`;
+      finalMessage = `<a href='${url}'>${fileName}</a> (${fileSizeStr}) <br>Do not Share Direct Link. To Share Use: <br>If it's a File<a href='${indexurl}'>${fileName}</a><br>If it's a Folder <a href='${indexurl}/'>${fileName}</a>`;
     } else {
-      finalMessage = `<a href='${url}'>${fileName}</a> Do not Share Direct Link. Use Index of Bots. Check <a href='https://t.me/BhadooCloud/39'>This Post</a>`;
+      finalMessage = `<a href='${url}'>${fileName}</a> (${fileSizeStr}) <br>Do not Share Direct Link. To Share Use: <br>If it's a File<a href='${indexurl}'>${fileName}</a><br>If it's a Folder <a href='${indexurl}/'>${fileName}</a>`;
     }
     cleanupDownload(gid, finalMessage, url);
   }
