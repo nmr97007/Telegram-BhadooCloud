@@ -36,9 +36,11 @@ function setEventCallback(regexp: RegExp, regexpNoName: RegExp,
 setEventCallback(eventRegex.commandsRegex.start, eventRegex.commandsRegexNoName.start, (msg) => {
   if (msgTools.isAuthorized(msg) < 0) {
     // msgTools.sendUnauthorizedMessage(bot, msg);
-    msgTools.sendMessage(bot, msg, 'Bot is not usable Outside @BhadooCloud group', -1);
+    msgTools.sendMessage(bot, msg, 'Bot is not usable outside @BhadooCloud group', -1);
   } else {
-    msgTools.sendMessage(bot, msg, 'Never add A dead Torrent', -1);
+    msgTools.sendMessage(bot, msg,
+                         'Welcome to @BhadooCloud Group. Here you can fetch Torrents and Direct URLs to Shared Google Drive. There are several bots embedded in this group and more are coming soon. You can enter / mirror to see number of bots and their usernames. Each file is deleted after every 10 days. Do not share direct Drive Links, instead go to Group Description and Open Index and share those URLs in public. Dont add dead torrents and do not spam. Support is available at @Bhadoo . Visit <a href="https://t.me/BhadooCloud/39">This Post</a> for updates in Group.',
+                         -1);
   }
 });
 
@@ -303,11 +305,22 @@ function prepDownload(msg: TelegramBot.Message, match: string, isTar: boolean): 
       console.log(`gid: ${gid} download:${match}`);
       // Wait a second to give aria2 enough time to queue the download
       setTimeout(() => {
-        dlManager.setStatusLock(msg, sendStatusMessage);
+        // dlManager.setStatusLock(msg, sendStatusMessage);
+        dlManager.setStatusLock(msg, uriAdded);
       }, 1000);
     }
   });
 
+}
+
+/**
+ * 
+ * Added mirror function
+ * send a added mirror msg --- added by @aryanvikash
+ */
+
+function uriAdded(msg: TelegramBot.Message): any{
+  msgTools.sendMessage(bot, msg, 'URI Added 😊, reply / mirrorstatus to your magnet to get Status.', -1);
 }
 
 /**
@@ -586,9 +599,9 @@ function driveUploadCompleteCallback(err: string, gid: string, url: string, file
     console.log(`${gid}: Uploaded `);
     if (fileSize) {
       var fileSizeStr = downloadUtils.formatSize(fileSize);
-      finalMessage = `<a href='${url}'>${fileName}</a> (${fileSizeStr})`;
+      finalMessage = `<a href='${url}'>${fileName}</a> (${fileSizeStr}) Do not Share Direct Link. Use Index of Bots. Check <a href='https://t.me/BhadooCloud/39'>This Post</a>`;
     } else {
-      finalMessage = `<a href='${url}'>${fileName}</a>`;
+      finalMessage = `<a href='${url}'>${fileName}</a> Do not Share Direct Link. Use Index of Bots. Check <a href='https://t.me/BhadooCloud/39'>This Post</a>`;
     }
     cleanupDownload(gid, finalMessage, url);
   }
