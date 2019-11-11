@@ -599,9 +599,9 @@ function driveUploadCompleteCallback(err: string, gid: string, url: string, file
     console.log(`${gid}: Uploaded `);
     if (fileSize) {
       var fileSizeStr = downloadUtils.formatSize(fileSize);
-      finalMessage = `<a href='${url}'>${fileName}</a> (${fileSizeStr}) <br>Do not Share Direct Link. To Share Use: <br>If it's a File<a href='${indexurl}'>${fileName}</a><br>If it's a Folder <a href='${indexurl}/'>${fileName}</a>`;
+      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> (${fileSizeStr}) <br>Do not Share Direct Link. To Share Use: <br>If it's a File<a href='${indexurl}'>${fileName}</a><br>If it's a Folder <a href='${indexurl}/'>${fileName}</a>`;
     } else {
-      finalMessage = `<a href='${url}'>${fileName}</a> (${fileSizeStr}) <br>Do not Share Direct Link. To Share Use: <br>If it's a File<a href='${indexurl}'>${fileName}</a><br>If it's a Folder <a href='${indexurl}/'>${fileName}</a>`;
+      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> (${fileSizeStr}) <br>Do not Share Direct Link. To Share Use: <br>If it's a File<a href='${indexurl}'>${fileName}</a><br>If it's a Folder <a href='${indexurl}/'>${fileName}</a>`;
     }
     cleanupDownload(gid, finalMessage, url);
   }
