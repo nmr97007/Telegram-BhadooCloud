@@ -1,4 +1,3 @@
-  
 import TelegramBot = require('node-telegram-bot-api');
 import uuid = require('uuid/v4');
 import downloadUtils = require('./download_tools/utils');
@@ -321,7 +320,7 @@ function prepDownload(msg: TelegramBot.Message, match: string, isTar: boolean): 
  */
 
 function uriAdded(msg: TelegramBot.Message): any{
-  msgTools.sendMessage(bot, msg, 'URI Added 😊, reply / mirrorstatus to your magnet to get Status.', -1);
+  msgTools.sendMessage(bot, msg, 'URI Added 😊, reply /mirrorstatus to your magnet to get Status.', -1);
 }
 
 /**
@@ -599,12 +598,19 @@ function driveUploadCompleteCallback(err: string, gid: string, url: string, file
     console.log(`${gid}: Uploaded `);
     if (fileSize) {
       var fileSizeStr = downloadUtils.formatSize(fileSize);
-      var rawurl = constants.INDEX_DOMAIN + fileName ;
+      if(url.indexOf("/folders/") > -1){
+        var rawurl = constants.INDEX_DOMAIN + fileName + "/";
+      }else{
+        var rawurl = constants.INDEX_DOMAIN + fileName ;
+      }
       var indexurl = encodeURI(rawurl) ;
-      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> (${fileSizeStr}) \n\nDo not Share Direct Link. \n\nTo Share Use: \n\n<a href='${indexurl}'>${fileName}</a> if it's a File \n\n<a href='${indexurl}/'>${fileName}</a> if it's a Folder`;
+      finalMessage = `<a href='${indexurl}'>${fileName}</a> (${fileSizeStr})`;
+      // finalMessage = `<a href='${url}'>${fileName}</a> (${fileSizeStr})`;
     } else {
-      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> \n\nDo not Share Direct Link. \n\nTo Share Use: \n\n<a href='${indexurl}'>${fileName}</a> if it's a File \n\n<a href='${indexurl}/'>${fileName}</a> if it's a Folder`;
+      // finalMessage = `<a href='${url}'>${fileName}</a>`;
+      finalMessage = `<a href='${indexurl}'>${fileName}</a>`;
+
     }
     cleanupDownload(gid, finalMessage, url);
-    }
   }
+}
