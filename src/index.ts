@@ -632,3 +632,4 @@ function driveUploadCompleteCallback(err: string, gid: string, url: string, file
     cleanupDownload(gid, finalMessage, url);
     }
   }
+}
