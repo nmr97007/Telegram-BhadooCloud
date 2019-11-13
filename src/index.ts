@@ -1,3 +1,4 @@
+  
 import TelegramBot = require('node-telegram-bot-api');
 import uuid = require('uuid/v4');
 import downloadUtils = require('./download_tools/utils');
@@ -293,37 +294,6 @@ function handleDisallowedFilename(dlDetails: details.DlVars, filename: string): 
   return true;
 }
 
-  /**      function prepDownload(msg: TelegramBot.Message, match: string, isTar: boolean): void {
-          var dlDir = uuid();
-          ariaTools.addUri(match, dlDir, (err, gid) => {
-            dlManager.addDownload(gid, dlDir, msg, isTar);
-            if (err) {
-              var message = `Failed to start the download. ${err.message}`;
-              console.error(message);
-              cleanupDownload(gid, message);
-            } else {
-              console.log(`gid: ${gid} download:${match}`);
-              // Wait a second to give aria2 enough time to queue the download
-              setTimeout(() => {
-                // dlManager.setStatusLock(msg, sendStatusMessage);
-                dlManager.setStatusLock(msg, uriAdded);
-              }, 1000);
-            }
-          });
-
-        }
-
-        /**
-         * 
-         * Added mirror function
-         * send a added mirror msg --- added by @aryanvikash
-         */
-/**
-        function uriAdded(msg: TelegramBot.Message): any{
-          msgTools.sendMessage(bot, msg, 'URI Added 😊, reply / mirrorstatus to your magnet to get Status.', -1);
-        }
-*/
-
 function prepDownload(msg: TelegramBot.Message, match: string, isTar: boolean): void {
   var dlDir = uuid();
   ariaTools.addUri(match, dlDir, (err, gid) => {
@@ -336,10 +306,23 @@ function prepDownload(msg: TelegramBot.Message, match: string, isTar: boolean): 
       console.log(`gid: ${gid} download:${match}`);
       // Wait a second to give aria2 enough time to queue the download
       setTimeout(() => {
-        dlManager.setStatusLock(msg, sendStatusMessage);
+        // dlManager.setStatusLock(msg, sendStatusMessage);
+        dlManager.setStatusLock(msg, uriAdded);
       }, 1000);
     }
   });
+
+}
+
+/**
+ * 
+ * Added mirror function
+ * send a added mirror msg --- added by @aryanvikash
+ */
+
+function uriAdded(msg: TelegramBot.Message): any{
+  msgTools.sendMessage(bot, msg, 'URI Added 😊, reply / mirrorstatus to your magnet to get Status.', -1);
+}
 
 /**
  * Sends a single status message for all active and queued downloads.
@@ -616,20 +599,12 @@ function driveUploadCompleteCallback(err: string, gid: string, url: string, file
     console.log(`${gid}: Uploaded `);
     if (fileSize) {
       var fileSizeStr = downloadUtils.formatSize(fileSize);
-      if(url.indexOf("/folders/") > -1){
-        var rawurl = constants.INDEX_DOMAIN + fileName + "/";
-      }else{
-        var rawurl = constants.INDEX_DOMAIN + fileName ;
-      }
+      var rawurl = constants.INDEX_DOMAIN + fileName ;
       var indexurl = encodeURI(rawurl) ;
-//      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> (${fileSizeStr}) \n\nDo not Share Direct Link. \n\nTo Share Use: \n\n<a href='${indexurl}'>${fileName}</a>`;
-//    } else {
-//      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> \n\nDo not Share Direct Link. \n\nTo Share Use: \n\n<a href='${indexurl}'>${fileName}</a>`;
-        finalMessage = `Download Success\n<a href='${indexurl}'>${fileName}</a> (${fileSizeStr})`;
-      } else {
-        finalMessage = `Download Success\n<a href='${indexurl}'>${fileName}</a>`;
-      }
+      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> (${fileSizeStr}) \n\nDo not Share Direct Link. \n\nTo Share Use: \n\n<a href='${indexurl}'>${fileName}</a> if it's a File \n\n<a href='${indexurl}/'>${fileName}</a> if it's a Folder`;
+    } else {
+      finalMessage = `GDrive Link: <a href='${url}'>${fileName}</a> \n\nDo not Share Direct Link. \n\nTo Share Use: \n\n<a href='${indexurl}'>${fileName}</a> if it's a File \n\n<a href='${indexurl}/'>${fileName}</a> if it's a Folder`;
+    }
     cleanupDownload(gid, finalMessage, url);
     }
   }
-}
