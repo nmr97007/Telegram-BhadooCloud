@@ -13,7 +13,7 @@ import dlUtils = require('../download_tools/utils');
  */
 export function listFiles (fileName:string, callback:(err:string, message:string)=> void): void {
   // Uncommenting the below line will prevent users from asking to list all files
-  // if (fileName === '' || fileName ==='*' || fileName === '%') return;
+  if (fileName === '' || fileName ==='*' || fileName === '%') return;
 
   driveAuth.call((err, auth) => {
     if (err) {
@@ -81,23 +81,17 @@ function generateFilesListMessage (files:any[]): string {
   var message = '';
   if (files.length > 0) {
     for (var i = 0; i < files.length; i++) {
-      // message += '<a href = \'' + files[i]['url'] + '\'>' + files[i]['name'] + '</a>';
-
-      if (files[i]['size']){
-      var indexurl = constants.INDEX_DOMAIN + files[i]['name'];
-      message += '<a href = \'' + indexurl + '\'>' + files[i]['name'] + '</a>';
-      message += ' (' + dlUtils.formatSize(files[i]['size']) + ')';
-      message += '📄 \n'
-      }else if (files[i]['mimeType'] === 'application/vnd.google-apps.folder'){
-        var indexurl = constants.INDEX_DOMAIN + files[i]['name'] + '/';
-        message += '<a href = \'' + indexurl + '\'>' + files[i]['name'] + '</a>';
-        message += ' (folder 🗂)\n';
-      }else
+      message += '<a href = \'' + files[i]['url'] + '\'>' + files[i]['name'] + '</a>';
+      if (files[i]['size'])
+        message += ' (' + dlUtils.formatSize(files[i]['size']) + ')\n';
+      else if (files[i]['mimeType'] === 'application/vnd.google-apps.folder')
+        message += ' (folder)\n';
+      else
       message += '\n';
 
     }
   } else {
-    message = 'There are no files or folder matching to your search Query ';
+    message = 'There are no files matching your search query.';
   }
   return message;
 }
