@@ -1,12 +1,12 @@
 # @BhadooCloud : Telegram Torrent Drive Bot
 
-Original Docs by Creator at [creators-ReadMe.md](https://github.com/ParveenBhadooOfficial/ariabot/blob/master/creators-ReadMe.md)
+Original Docs by Creator at [creators-ReadMe.md](https://github.com/ParveenBhadooOfficial/Telegram-BhadooCloud/blob/master/creators-ReadMe.md)
 
 ## Basic Documentation
 
 * Fork this Repo
 * Create a Telegram Bot
-* Change Token in [Line 2](https://github.com/ParveenBhadooOfficial/ariabot/blob/master/src/.constants.js)
+* Change Token in [Line 2](https://github.com/ParveenBhadooOfficial/Telegram-BhadooCloud/blob/master/src/.constants.js)
 * Create a Folder inside you Google Drive, open it and Copy it's ID.
 * For `https://drive.google.com/drive/folders/1p7pHhSh2yboWePmo53DnVr3xkAYiojP9` `1p7pHhSh2yboWePmo53DnVr3xkAYiojP9` is ID.
 * Set up OAuth:
@@ -23,8 +23,8 @@ Original Docs by Creator at [creators-ReadMe.md](https://github.com/ParveenBhado
 * `curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -`
 * `sudo apt install nodejs`
 * `sudo npm install -g typescript`
-* `git clone https://github.com/ParveenBhadooOfficial/ariabot` Change this url to your fork url.
-* `cd ariabot`
+* `git clone https://github.com/ParveenBhadooOfficial/Telegram-BhadooCloud` Change this url to your fork url.
+* `cd Telegram-BhadooCloud`
 * `sudo npm install`
 * `sudo tsc`
 * `sudo bash ./aria.sh` It Should Print `Aria2c daemon started`
@@ -32,7 +32,7 @@ Original Docs by Creator at [creators-ReadMe.md](https://github.com/ParveenBhado
 * `sudo reboot` is required
 * `sudo bash ./aria.sh` It Should Print `Aria2c daemon started`
 * `sudo npm start`
-* Your Bot is Started. Send `/mirror https://github.com/ParveenBhadooOfficial/aria/blob/master/README.md` to your Telegram Bot.
+* Your Bot is Started. Send `/mirror https://github.com/ParveenBhadooOfficial/Telegram-BhadooCloud/blob/master/README.md` to your Telegram Bot.
 * In Terminal Copy the accounts.google.com full url and paste in browser and authenticate your drive.
 * Paste the Token you received in terminal.
 * Download the credentials.json file from your Linux Server. (I use Termius to Transfer files, it's in root of ariabot directory)
@@ -41,7 +41,7 @@ Original Docs by Creator at [creators-ReadMe.md](https://github.com/ParveenBhado
 * `sudo screen`
 * This will run your bot in background even you close terminal. (otherwise Bot will go offline as soon as terminal session ends)
 
-Note: You must change git url in [Docker File](https://github.com/ParveenBhadooOfficial/ariabot/blob/master/Dockerfile) on line 22.
+Note: You must change git url in [Docker File](https://github.com/ParveenBhadooOfficial/Telegram-BhadooCloud/blob/master/Dockerfile) on line 22.
 
 ## Deployment to Heroku
 
