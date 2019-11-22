@@ -35,7 +35,7 @@ Original Docs by Creator at [creators-ReadMe.md](https://github.com/ParveenBhado
 * Your Bot is Started. Send `/mirror https://github.com/ParveenBhadooOfficial/Telegram-BhadooCloud/blob/master/README.md` to your Telegram Bot.
 * In Terminal Copy the accounts.google.com full url and paste in browser and authenticate your drive.
 * Paste the Token you received in terminal.
-* Download the credentials.json file from your Linux Server. (I use Termius to Transfer files, it's in root of ariabot directory)
+* Download the credentials.json file from your Linux Server. (I use Termius to Transfer files, it's in root of Telegram-BhadooCloud directory)
 * Your Bot is active and now we can deploy it on Heroku.
 * But if you want to run it on EC2 instead of Heroku follow below.
 * `sudo screen`
